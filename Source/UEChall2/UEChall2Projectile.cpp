@@ -36,7 +36,10 @@ void AUEChall2Projectile::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor
 	// Only add impulse and destroy projectile if we hit a physics
 	if ((OtherActor != nullptr) && (OtherActor != this) && (OtherComp != nullptr) && OtherComp->IsSimulatingPhysics())
 	{
+		UE_LOG(LogTemp, Warning, TEXT("SPEED: %.2f, %.2f"), GetVelocity().X, GetVelocity().Y);
 		OtherComp->AddImpulseAtLocation(GetVelocity() * 100.0f, GetActorLocation());
+		//OtherComp->AddForceAtLocation(GetVelocity() * 100000.0f , GetActorLocation());
+
 
 		//Destroy();
 	}
