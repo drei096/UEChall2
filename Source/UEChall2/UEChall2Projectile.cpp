@@ -54,7 +54,8 @@ void AUEChall2Projectile::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor
 		//OtherComp->AddForce(GetVelocity().GetAbs() * 5000.0f);
 		//OtherComp->AddForceAtLocation(GetVelocity() * 100000.0f , GetActorLocation());
 
-		OtherComp->AddRadialImpulse(GetActorLocation(), 200.0f, 900000.0f, ERadialImpulseFalloff::RIF_Linear, false);
+
+		OtherComp->AddRadialImpulse(GetActorLocation(), 600.0f, 900000.0f, ERadialImpulseFalloff::RIF_Linear, false);
 		
 
 		//Destroy();
