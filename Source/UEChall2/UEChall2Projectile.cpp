@@ -27,11 +27,14 @@ AUEChall2Projectile::AUEChall2Projectile()
 	ProjectileMovement->bRotationFollowsVelocity = true;
 	ProjectileMovement->bShouldBounce = true;
 
-
+	/*
 	radForceComp = CreateDefaultSubobject<URadialForceComponent>(TEXT("RadialForceComp"));
-	radForceComp->ForceStrength = 0.0f;
-	radForceComp->ImpulseStrength = 0.0f;
-	radForceComp->DestructibleDamage = 100.0f;
+	radForceComp->SetMobility(EComponentMobility::Movable);
+	radForceComp->SetupAttachment(RootComponent);
+	radForceComp->ForceStrength = 100000.0f;
+	radForceComp->ImpulseStrength = 100000.0f;
+	radForceComp->DestructibleDamage = 100000.0f;
+	*/
 
 	// Die after 3 seconds by default
 	//InitialLifeSpan = 3.0f;
@@ -40,19 +43,21 @@ AUEChall2Projectile::AUEChall2Projectile()
 void AUEChall2Projectile::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit)
 {
 	// Only add impulse and destroy projectile if we hit a physics
-	if ((OtherActor != nullptr) && (OtherActor != this) && (OtherComp != nullptr) && OtherComp->IsSimulatingPhysics() && radForceComp != nullptr)
+	if ((OtherActor != nullptr) && (OtherActor != this) && (OtherComp != nullptr) && OtherComp->IsSimulatingPhysics())
 	{
-		radForceComp->FireImpulse();
+		//radForceComp->FireImpulse();
 
-		UE_LOG(LogTemp, Warning, TEXT("SPEED: %.2f, %.2f"), GetVelocity().X, GetVelocity().Y);
-		OtherComp->AddImpulseAtLocation(GetVelocity(), Hit.ImpactPoint);
+		//UE_LOG(LogTemp, Warning, TEXT("SPEED: %.2f, %.2f"), radForceComp);
+		//UE_LOG(LogTemp, Warning, TEXT("NAME HIT: %s"), *OtherActor->GetName());
+		
+		//OtherComp->AddImpulse(GetVelocity().GetAbs() * 50.0f);
+		//OtherComp->AddForce(GetVelocity().GetAbs() * 5000.0f);
 		//OtherComp->AddForceAtLocation(GetVelocity() * 100000.0f , GetActorLocation());
 
+		OtherComp->AddRadialImpulse(GetActorLocation(), 200.0f, 900000.0f, ERadialImpulseFalloff::RIF_Linear, false);
+		
 
 		//Destroy();
 	}
-	else
-	{
-		UE_LOG(LogTemp, Warning, TEXT("MISSING COMPONENT DETECTED"));
-	}
+	
 }

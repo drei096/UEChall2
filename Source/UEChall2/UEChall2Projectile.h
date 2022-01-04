@@ -40,5 +40,7 @@ public:
 	/** Radial force component */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category=Projectile, meta = (AllowPrivateAccess = "true"))
 	URadialForceComponent* radForceComp;
+
+	URadialForceComponent* GetRadForceComponent() const { return radForceComp; }
 };
 
