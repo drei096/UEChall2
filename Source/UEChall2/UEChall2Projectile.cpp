@@ -57,7 +57,7 @@ void AUEChall2Projectile::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor
 
 		OtherComp->AddRadialImpulse(GetActorLocation(), 600.0f, 900000.0f, ERadialImpulseFalloff::RIF_Linear, false);
 		
-
+		UE_LOG(LogTemp, Warning, TEXT("IS HIT!!!!"));
 		//Destroy();
 	}
 	
