@@ -4,7 +4,6 @@
 
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
-#include "DestructibleComponent.h"
 #include "DMeshComp.generated.h"
 
 
