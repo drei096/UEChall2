@@ -4,7 +4,13 @@
 #include "GameFramework/ProjectileMovementComponent.h"
 #include "Components/SphereComponent.h"
 
-AUEChall2Projectile::AUEChall2Projectile() 
+void AUEChall2Projectile::BeginPlay()
+{
+	Super::BeginPlay();
+	
+}
+
+AUEChall2Projectile::AUEChall2Projectile()
 {
 	// Use a sphere as a simple collision representation
 	CollisionComp = CreateDefaultSubobject<USphereComponent>(TEXT("SphereComp"));
@@ -65,3 +71,8 @@ AUEChall2Projectile::AUEChall2Projectile()
 	}
 	
 }*/
+
+void AUEChall2Projectile::spawnCollectible()
+{
+	//Spawn random collectibles here
+}

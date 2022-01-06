@@ -144,5 +144,10 @@ public:
 	/** Returns FirstPersonCameraComponent subobject **/
 	UCameraComponent* GetFirstPersonCameraComponent() const { return FirstPersonCameraComponent; }
 
+public:
+	UPROPERTY(BlueprintReadWrite) TArray<AActor*> collectibleList;
+	UPROPERTY(BlueprintReadWrite) AActor* collectibleSample = nullptr;
+	
+
 };
 

@@ -25,12 +25,20 @@ class AUEChall2Projectile : public AActor
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Movement, meta = (AllowPrivateAccess = "true"))
 	UProjectileMovementComponent* ProjectileMovement;
 
+protected:
+	//Called when the game starts
+	virtual void BeginPlay() override;
+
 public:
 	AUEChall2Projectile();
+	
 
 	/** called when projectile hits something */
 	UFUNCTION(BlueprintImplementableEvent)
 	void OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit);
+
+	UFUNCTION(BlueprintCallable)
+	void spawnCollectible();
 
 	/** Returns CollisionComp subobject **/
 	USphereComponent* GetCollisionComp() const { return CollisionComp; }
