@@ -89,25 +89,6 @@ void AUEChall2Character::BeginPlay()
 	// Call the base class  
 	Super::BeginPlay();
 	this->collectibleList.SetNum(4);
-	UE_LOG(LogTemp, Warning, TEXT("SIZE: %d"), this->collectibleList.Num());
-	//gather all the collectibles
-	if(this->collectibleList.Num() != 0)
-	{
-		UE_LOG(LogTemp, Warning, TEXT("SIZE: %d"), this->collectibleList.Num());
-		for (int i = 0; i < this->collectibleList.Num(); i++)
-		{
-			UE_LOG(LogTemp, Warning, TEXT("Delete"));
-			if(this->collectibleList[i] != nullptr)
-			{
-				this->collectibleList[i]->SetActorHiddenInGame(true);
-			}
-		}
-	}
-
-	if(this->collectibleSample != nullptr)
-	{
-		this->collectibleSample->SetActorHiddenInGame(true);
-	}
 	
 	//Attach gun mesh component to Skeleton, doing it here because the skeleton is not yet created in the constructor
 	FP_Gun->AttachToComponent(Mesh1P, FAttachmentTransformRules(EAttachmentRule::SnapToTarget, true), TEXT("GripPoint"));
@@ -127,6 +108,22 @@ void AUEChall2Character::BeginPlay()
 
 //////////////////////////////////////////////////////////////////////////
 // Input
+
+void AUEChall2Character::Tick(float DeltaSeconds)
+{
+	Super::Tick(DeltaSeconds);
+
+	if(this->collectibleList[0] != nullptr && !this->collectibleList[0]->IsHidden())
+	{
+		for (int i = 0; i < this->collectibleList.Num(); i++)
+		{
+			if(this->collectibleList[i] != nullptr)
+			{
+				this->collectibleList[i]->SetActorHiddenInGame(true);
+			}
+		}
+	}
+}
 
 void AUEChall2Character::SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent)
 {

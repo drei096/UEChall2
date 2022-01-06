@@ -126,6 +126,7 @@ protected:
 	TouchData	TouchItem;
 	
 protected:
+	virtual void Tick(float DeltaSeconds);
 	// APawn interface
 	virtual void SetupPlayerInputComponent(UInputComponent* InputComponent) override;
 	// End of APawn interface
@@ -146,7 +147,6 @@ public:
 
 public:
 	UPROPERTY(BlueprintReadWrite) TArray<AActor*> collectibleList;
-	UPROPERTY(BlueprintReadWrite) AActor* collectibleSample = nullptr;
 	
 
 };
