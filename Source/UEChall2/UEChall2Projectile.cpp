@@ -46,31 +46,36 @@ AUEChall2Projectile::AUEChall2Projectile()
 	//InitialLifeSpan = 3.0f;
 }
 
-/*void AUEChall2Projectile::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit)
+void AUEChall2Projectile::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit)
 {
+	radForceComp = this->FindComponentByClass<URadialForceComponent>();
+	radForceComp->FireImpulse();
+
 	// Only add impulse and destroy projectile if we hit a physics
 	if (OtherComp->IsSimulatingPhysics())
 	{
+
+
 		//radForceComp->FireImpulse();
 
 		//UE_LOG(LogTemp, Warning, TEXT("SPEED: %.2f, %.2f"), radForceComp);
 		//UE_LOG(LogTemp, Warning, TEXT("NAME HIT: %s"), *OtherActor->GetName());
-		
+
 		//OtherComp->AddImpulse(GetVelocity().GetAbs() * 50.0f);
 		//OtherComp->AddForce(GetVelocity().GetAbs() * 5000.0f);
 		//OtherComp->AddForceAtLocation(GetVelocity() * 100000.0f , GetActorLocation());
 
 		OtherComp->AddImpulseAtLocation(GetVelocity(), GetActorLocation(), NAME_None);
-		OtherComp->AddRadialImpulse(GetActorLocation(), 2000, 10000.0, ERadialImpulseFalloff::RIF_Constant, false);
-		OtherComp->AddRadialForce(GetActorLocation(), 2000, 10000.0, ERadialImpulseFalloff::RIF_Constant, false);
-		
-		
+		OtherComp->AddRadialImpulse(GetActorLocation(), 2000, 500000.0, ERadialImpulseFalloff::RIF_Linear, false);
+		OtherComp->AddRadialForce(GetActorLocation(), 2000, 100000.0, ERadialImpulseFalloff::RIF_Linear, false);
+
+
 
 		UE_LOG(LogTemp, Warning, TEXT("IS HIT!!!!"));
 		//Destroy();
 	}
-	
-}*/
+
+}
 
 void AUEChall2Projectile::spawnCollectible()
 {

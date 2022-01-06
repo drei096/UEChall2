@@ -34,7 +34,8 @@ public:
 	
 
 	/** called when projectile hits something */
-	UFUNCTION(BlueprintImplementableEvent)
+	//UFUNCTION(BlueprintImplementableEvent)
+	UFUNCTION()
 	void OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit);
 
 	UFUNCTION(BlueprintCallable)
@@ -47,7 +48,7 @@ public:
 
 	/** Radial force component */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category=Projectile, meta = (AllowPrivateAccess = "true"))
-	URadialForceComponent* radForceComp;
+	URadialForceComponent* radForceComp = nullptr;
 
 	URadialForceComponent* GetRadForceComponent() const { return radForceComp; }
 };
