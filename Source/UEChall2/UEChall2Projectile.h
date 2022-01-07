@@ -5,10 +5,12 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "PhysicsEngine/RadialForceComponent.h"
+#include "UEChall2Character.h"
 #include "UEChall2Projectile.generated.h"
 
 class USphereComponent;
 class UProjectileMovementComponent;
+class ACollectibleSpawner;
 
 UCLASS(config=Game)
 class AUEChall2Projectile : public AActor
@@ -51,5 +53,8 @@ public:
 	URadialForceComponent* radForceComp = nullptr;
 
 	URadialForceComponent* GetRadForceComponent() const { return radForceComp; }
+
+private:
+	ACollectibleSpawner* collectibleSpawner = nullptr; 
 };
 

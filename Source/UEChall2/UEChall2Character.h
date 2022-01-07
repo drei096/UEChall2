@@ -6,6 +6,7 @@
 #include "GameFramework/Character.h"
 #include "UEChall2Character.generated.h"
 
+class ACollectibleSpawner;
 class UInputComponent;
 class USkeletalMeshComponent;
 class USceneComponent;
@@ -148,6 +149,8 @@ public:
 public:
 	UPROPERTY(BlueprintReadWrite) TArray<AActor*> collectibleList;
 	
-
+public:
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	ACollectibleSpawner* collectibleSpawner = nullptr; 
 };
 

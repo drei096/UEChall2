@@ -1,13 +1,24 @@
 // Copyright Epic Games, Inc. All Rights Reserved.
 
 #include "UEChall2Projectile.h"
+
+#include "CollectibleSpawner.h"
 #include "GameFramework/ProjectileMovementComponent.h"
 #include "Components/SphereComponent.h"
 
 void AUEChall2Projectile::BeginPlay()
 {
 	Super::BeginPlay();
-	
+
+	APlayerController* PC = GetWorld()->GetFirstPlayerController();
+    if (PC != nullptr)
+    {
+        AUEChall2Character* Character=  Cast<AUEChall2Character >(PC->GetPawn());
+        if (Character != nullptr)
+        {
+			this->collectibleSpawner = Character->collectibleSpawner;
+        }
+    }
 }
 
 AUEChall2Projectile::AUEChall2Projectile()
@@ -66,12 +77,13 @@ void AUEChall2Projectile::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor
 		//OtherComp->AddForceAtLocation(GetVelocity() * 100000.0f , GetActorLocation());
 
 		OtherComp->AddImpulseAtLocation(GetVelocity(), GetActorLocation(), NAME_None);
+		
 		//OtherComp->AddRadialImpulse(GetActorLocation(), 2000, 500000.0, ERadialImpulseFalloff::RIF_Linear, false);
 		//OtherComp->AddRadialForce(GetActorLocation(), 2000, 100000.0, ERadialImpulseFalloff::RIF_Linear, false);
 
+		spawnCollectible();
 
-
-		UE_LOG(LogTemp, Warning, TEXT("IS HIT!!!!"));
+		//UE_LOG(LogTemp, Warning, TEXT("IS HIT!!!!: %s"), *UGameplayStatics::GetPlayerController(GetWorld(), 0)->GetPawn()->GetName());
 		//Destroy();
 	}
 
@@ -79,5 +91,17 @@ void AUEChall2Projectile::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor
 
 void AUEChall2Projectile::spawnCollectible()
 {
+	/*
 	//Spawn random collectibles here
+	TArray<AActor*> spawnList;
+	APlayerController* PC = GetWorld()->GetFirstPlayerController();
+    if (PC != nullptr)
+    {
+        AUEChall2Character* Character=  Cast<AUEChall2Character >(PC->GetPawn());
+        if (Character != nullptr)
+        {
+			spawnList.Append(Character->collectibleList);
+			UE_LOG(LogTemp, Warning, TEXT("IS HIT!!!!: %s"), *spawnList[FMath::RandRange(0,3)]->GetName());
+        }
+    }*/
 }
