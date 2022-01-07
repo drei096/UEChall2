@@ -25,6 +25,7 @@ void ACollectibleSpawner::BeginPlay()
 void ACollectibleSpawner::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+	/*
 	if (this->ticks < spawnInterval)
 	{
 		this->ticks += DeltaTime;
@@ -37,5 +38,6 @@ void ACollectibleSpawner::Tick(float DeltaTime)
 
 		this->spawnInterval = 1.0f;
 	}
+	*/
 }
 

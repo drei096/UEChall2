@@ -6,6 +6,7 @@
 #include "GameFramework/Actor.h"
 #include "PhysicsEngine/RadialForceComponent.h"
 #include "UEChall2Character.h"
+#include "CustomEnums.h"
 #include "UEChall2Projectile.generated.h"
 
 class USphereComponent;
@@ -41,7 +42,7 @@ public:
 	void OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit);
 
 	UFUNCTION(BlueprintCallable)
-	void spawnCollectible();
+	void spawnCollectible(FVector loc);
 
 	/** Returns CollisionComp subobject **/
 	USphereComponent* GetCollisionComp() const { return CollisionComp; }
@@ -55,6 +56,7 @@ public:
 	URadialForceComponent* GetRadForceComponent() const { return radForceComp; }
 
 private:
-	ACollectibleSpawner* collectibleSpawner = nullptr; 
+	ACollectibleSpawner* collectibleSpawner = nullptr;
+	TArray<ECollectibles> collectibleOrder;
 };
 

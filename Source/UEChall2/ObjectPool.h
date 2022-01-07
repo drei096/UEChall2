@@ -29,8 +29,8 @@ public:
 	void Initialize();
 	bool HasObjectAvailable(int requestSize);
 	int GetMaxPoolSize();
-	AActorPoolable* RequestPoolable();
-	AActorPoolable* RequestPoolable(ECollectibles collectType);
+	AActorPoolable* RequestPoolable(FVector loc);
+	AActorPoolable* RequestPoolable(ECollectibles collectType, FVector loc);
 	TArray<AActorPoolable*> RequestPoolabeBatch(int size);
 
 	void ReleasePoolable(AActorPoolable* poolableObject);

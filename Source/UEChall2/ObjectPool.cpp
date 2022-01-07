@@ -88,7 +88,7 @@ int UObjectPool::GetMaxPoolSize()
 	return this->maxPoolSize;
 }
 
-AActorPoolable* UObjectPool::RequestPoolable()
+AActorPoolable* UObjectPool::RequestPoolable(FVector loc)
 {
 	if(this->HasObjectAvailable(1))
 	{
@@ -97,6 +97,7 @@ AActorPoolable* UObjectPool::RequestPoolable()
 		this->usedObjects.Push(object);
 		object->OnActive();
 		object->SetActorTransform(this->GetOwner()->GetActorTransform());
+		object->SetActorLocation(loc);
 		UE_LOG(LogTemp, Display, TEXT("Finished spawning %s"), *object->GetName());
 		return object;
 	}
@@ -107,7 +108,7 @@ AActorPoolable* UObjectPool::RequestPoolable()
 	}
 }
 
-AActorPoolable* UObjectPool::RequestPoolable(ECollectibles collectType)
+AActorPoolable* UObjectPool::RequestPoolable(ECollectibles collectType, FVector loc)
 {
 	if(this->HasObjectAvailable(1))
 	{
@@ -122,6 +123,7 @@ AActorPoolable* UObjectPool::RequestPoolable(ECollectibles collectType)
 				object->SetIndex(this->usedObjects.Num());
 				object->OnActive();
 				object->SetActorTransform(this->GetOwner()->GetActorTransform());
+				object->SetActorLocation(loc);
 				UE_LOG(LogTemp, Display, TEXT("Finished spawning %s"), *object->GetName());
 				return object;
 			}
@@ -140,7 +142,7 @@ TArray<AActorPoolable*> UObjectPool::RequestPoolabeBatch(int size)
 	TArray<AActorPoolable*> objects;
 	for (int i = 0; i < size && availableObjects.Num() > 0; i++)
 	{
-		objects.Push(this->RequestPoolable());
+		objects.Push(this->RequestPoolable(this->GetOwner()->GetActorLocation()));
 	}
 
 	return objects;

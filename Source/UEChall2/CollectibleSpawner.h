@@ -24,8 +24,9 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-private:
+public:
 	UObjectPool* collectiblePool;
+private:
 	float ticks = 0.0f;
 	float spawnInterval = 1.0f;
 };
