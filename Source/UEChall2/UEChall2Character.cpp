@@ -1,6 +1,8 @@
 // Copyright Epic Games, Inc. All Rights Reserved.
 
 #include "UEChall2Character.h"
+
+#include "CollectibleSpawner.h"
 #include "UEChall2Projectile.h"
 #include "Animation/AnimInstance.h"
 #include "Camera/CameraComponent.h"
@@ -333,15 +335,29 @@ void AUEChall2Character::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor,
 	if(OtherActor->ActorHasTag(capsuleTag) || OtherActor->ActorHasTag(coneTag) || OtherActor->ActorHasTag(cylinderTag) || OtherActor->ActorHasTag(cubeTag))
 	{
 		//destroy or put collectible back to pool
-		OtherActor->Destroy();
+		AActorPoolable* poolableActor = Cast<AActorPoolable>(OtherActor);
+		collectibleSpawner->FindComponentByClass<UObjectPool>()->ReleasePoolable(poolableActor);
+		OtherActor->SetActorEnableCollision(false);
+		//poolableActor->parentShape->Destroy();
+
 
 		//get the reference to the projectile here
 		if(OtherActor->ActorHasTag(cylinderTag))
 		{
 			projectileSizeID = 3;
 		}
-		
-
-
+		else if(OtherActor->ActorHasTag(capsuleTag))
+		{
+			projectileSizeID = 4;
+		}
+		else if (OtherActor->ActorHasTag(coneTag))
+		{
+			projectileSizeID = 1;
+		}
+		else if (OtherActor->ActorHasTag(cubeTag))
+		{
+			projectileSizeID = 2;
+		}
 	}
+	
 }

@@ -4,6 +4,8 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "ObjectPool.h"
+#include "ActorPoolable.h"
 #include "UEChall2Character.generated.h"
 
 class ACollectibleSpawner;

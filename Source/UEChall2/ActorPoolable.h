@@ -23,6 +23,7 @@ public:
 	void SetIndex(int i);
 	int GetIndex();
 	ECollectibles collectibleType = ECollectibles::NONE;
+	AActor* parentShape = nullptr;
 
 private:
 	int index = -1;

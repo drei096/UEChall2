@@ -75,6 +75,8 @@ void UObjectPool::Initialize()
 			poolableObject->OnInitialize();
 			this->availableObjects.Push(poolableObject);
 		}
+
+		this->actorCopies[x]->Destroy();
 	}
 }
 
@@ -108,7 +110,7 @@ AActorPoolable* UObjectPool::RequestPoolable(FVector loc)
 	}
 }
 
-AActorPoolable* UObjectPool::RequestPoolable(ECollectibles collectType, FVector loc)
+AActorPoolable* UObjectPool::RequestPoolable(ECollectibles collectType, FVector loc, AActor* parentShape)
 {
 	if(this->HasObjectAvailable(1))
 	{
@@ -117,6 +119,9 @@ AActorPoolable* UObjectPool::RequestPoolable(ECollectibles collectType, FVector 
 			if(availableObjects[i]->collectibleType == collectType)
 			{
 				AActorPoolable* object = availableObjects[i];
+
+				object->parentShape = parentShape;
+
 				availableObjects.RemoveAt(i);
 				usedObjects.Push(object);
 

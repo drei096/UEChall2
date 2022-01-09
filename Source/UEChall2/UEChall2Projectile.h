@@ -42,7 +42,7 @@ public:
 	void OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit);
 
 	UFUNCTION(BlueprintCallable)
-	void spawnCollectible(FVector loc);
+	void spawnCollectible(FVector loc, AActor* parentShape);
 
 	/** Returns CollisionComp subobject **/
 	USphereComponent* GetCollisionComp() const { return CollisionComp; }

@@ -30,7 +30,7 @@ public:
 	bool HasObjectAvailable(int requestSize);
 	int GetMaxPoolSize();
 	AActorPoolable* RequestPoolable(FVector loc);
-	AActorPoolable* RequestPoolable(ECollectibles collectType, FVector loc);
+	AActorPoolable* RequestPoolable(ECollectibles collectType, FVector loc, AActor* parentShape);
 	TArray<AActorPoolable*> RequestPoolabeBatch(int size);
 
 	void ReleasePoolable(AActorPoolable* poolableObject);
