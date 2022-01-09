@@ -14,7 +14,7 @@ void AUEChall2Projectile::BeginPlay()
 	APlayerController* PC = GetWorld()->GetFirstPlayerController();
     if (PC != nullptr)
     {
-        AUEChall2Character* Character=  Cast<AUEChall2Character >(PC->GetPawn());
+        Character =  Cast<AUEChall2Character >(PC->GetPawn());
         if (Character != nullptr)
         {
 			this->collectibleSpawner = Character->collectibleSpawner;
@@ -22,6 +22,16 @@ void AUEChall2Projectile::BeginPlay()
     }
 
 	this->collectibleOrder = {ECollectibles::CAPSULE, ECollectibles::CONE, ECollectibles::CUBE, ECollectibles::CYLINDER};
+
+	switch (Character->projectileSizeID)
+	{
+	case 3:
+		RootComponent->GetOwner()->SetActorScale3D(FVector(5.0f, 5.0f, 5.0f));
+
+		break;
+	default:
+		break;
+	}
 }
 
 AUEChall2Projectile::AUEChall2Projectile()
@@ -46,6 +56,7 @@ AUEChall2Projectile::AUEChall2Projectile()
 	ProjectileMovement->MaxSpeed = 3000.f;
 	ProjectileMovement->bRotationFollowsVelocity = true;
 	ProjectileMovement->bShouldBounce = true;
+
 
 	/*
 	radForceComp = CreateDefaultSubobject<URadialForceComponent>(TEXT("RadialForceComp"));

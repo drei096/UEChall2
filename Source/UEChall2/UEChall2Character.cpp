@@ -89,7 +89,9 @@ void AUEChall2Character::BeginPlay()
 	// Call the base class  
 	Super::BeginPlay();
 	this->collectibleList.SetNum(4);
-	
+
+	GetCapsuleComponent()->OnComponentHit.AddDynamic(this, &AUEChall2Character::OnHit);
+
 	//Attach gun mesh component to Skeleton, doing it here because the skeleton is not yet created in the constructor
 	FP_Gun->AttachToComponent(Mesh1P, FAttachmentTransformRules(EAttachmentRule::SnapToTarget, true), TEXT("GripPoint"));
 
@@ -112,6 +114,8 @@ void AUEChall2Character::BeginPlay()
 void AUEChall2Character::Tick(float DeltaSeconds)
 {
 	Super::Tick(DeltaSeconds);
+
+
 
 	if(this->collectibleList[0] != nullptr && !this->collectibleList[0]->IsHidden())
 	{
@@ -181,6 +185,9 @@ void AUEChall2Character::OnFire()
 
 				// spawn the projectile at the muzzle
 				World->SpawnActor<AUEChall2Projectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
+
+				
+
 			}
 		}
 	}
@@ -314,4 +321,27 @@ bool AUEChall2Character::EnableTouchscreenMovement(class UInputComponent* Player
 	}
 	
 	return false;
+}
+
+void AUEChall2Character::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit)
+{
+	FName capsuleTag = "coll_CAPSULE";
+	FName coneTag = "coll_CONE";
+	FName cylinderTag = "coll_CYLINDER";
+	FName cubeTag = "coll_CUBE";
+
+	if(OtherActor->ActorHasTag(capsuleTag) || OtherActor->ActorHasTag(coneTag) || OtherActor->ActorHasTag(cylinderTag) || OtherActor->ActorHasTag(cubeTag))
+	{
+		//destroy or put collectible back to pool
+		OtherActor->Destroy();
+
+		//get the reference to the projectile here
+		if(OtherActor->ActorHasTag(cylinderTag))
+		{
+			projectileSizeID = 3;
+		}
+		
+
+
+	}
 }

@@ -146,11 +146,18 @@ public:
 	/** Returns FirstPersonCameraComponent subobject **/
 	UCameraComponent* GetFirstPersonCameraComponent() const { return FirstPersonCameraComponent; }
 
+	//called when the capsule component hits a collectible
+	UFUNCTION()
+	void OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit);
+
 public:
 	UPROPERTY(BlueprintReadWrite) TArray<AActor*> collectibleList;
 	
 public:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
-	ACollectibleSpawner* collectibleSpawner = nullptr; 
+	ACollectibleSpawner* collectibleSpawner = nullptr;
+
+	int projectileSizeID = 0;
+
 };
 

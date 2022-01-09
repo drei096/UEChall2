@@ -55,6 +55,8 @@ public:
 
 	URadialForceComponent* GetRadForceComponent() const { return radForceComp; }
 
+	AUEChall2Character* Character = nullptr;
+
 private:
 	ACollectibleSpawner* collectibleSpawner = nullptr;
 	TArray<ECollectibles> collectibleOrder;
