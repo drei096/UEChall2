@@ -27,20 +27,16 @@ void AUEChall2Projectile::BeginPlay()
 	switch (Character->projectileSizeID)
 	{
 	case 1:
-		//BROKEN VALUE STILL HAVE TO FIX
-		this->SetActorScale3D(FVector(0.5f, 0.5f, 0.5f));
+		this->SetActorScale3D(FVector(0.05f, 0.05f, 0.05f));
 		break;
-	case 2:
-		//BROKEN VALUE STILL HAVE TO FIX
-		this->SetActorScale3D(FVector(1.0f, 1.0f, 1.0f));
+	case 2: 
+		this->SetActorScale3D(FVector(0.1f, 0.1f, 0.1f));
 		break;
 	case 3:
-		//BROKEN VALUE STILL HAVE TO FIX
-		this->SetActorScale3D(FVector(5.0f, 5.0f, 5.0f));
+		this->SetActorScale3D(FVector(1.0f, 1.0f, 1.0f));
 		break;
 	case 4:
-		//BROKEN VALUE STILL HAVE TO FIX
-		this->SetActorScale3D(FVector(8.0f, 8.0f, 8.0f));
+		this->SetActorScale3D(FVector(1.5f, 1.5f, 1.5f));
 		break;
 	default:
 		break;
