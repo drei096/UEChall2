@@ -109,12 +109,12 @@ void AUEChall2Projectile::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor
 			//OtherComp->AddForce(GetVelocity().GetAbs() * 5000.0f);
 			//OtherComp->AddForceAtLocation(GetVelocity() * 100000.0f , GetActorLocation());
 
-			OtherComp->AddImpulseAtLocation(GetVelocity(), GetActorLocation(), NAME_None);
+			//OtherComp->AddImpulseAtLocation(GetVelocity(), GetActorLocation(), NAME_None);
 
 			//OtherComp->AddRadialImpulse(GetActorLocation(), 2000, 500000.0, ERadialImpulseFalloff::RIF_Linear, false);
 			//OtherComp->AddRadialForce(GetActorLocation(), 2000, 100000.0, ERadialImpulseFalloff::RIF_Linear, false);
 
-			spawnCollectible(OtherComp->GetOwner()->GetActorLocation(), OtherComp->GetOwner());
+			spawnCollectible(OtherComp->GetOwner()->GetActorLocation(), OtherActor);
 
 			UE_LOG(LogTemp, Warning, TEXT("IS HIT!!!!"));
 			//Destroy();
