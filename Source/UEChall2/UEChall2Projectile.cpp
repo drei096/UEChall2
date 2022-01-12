@@ -123,7 +123,7 @@ void AUEChall2Projectile::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor
 		}
 	}
 	
-	this->FindComponentByClass<UStaticMeshComponent>()->SetNotifyRigidBodyCollision(false);
+	//this->FindComponentByClass<UStaticMeshComponent>()->SetNotifyRigidBodyCollision(false);
 
 }
 

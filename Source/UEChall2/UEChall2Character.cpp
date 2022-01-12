@@ -338,7 +338,7 @@ void AUEChall2Character::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor,
 		AActorPoolable* poolableActor = Cast<AActorPoolable>(OtherActor);
 		collectibleSpawner->FindComponentByClass<UObjectPool>()->ReleasePoolable(poolableActor);
 		OtherActor->SetActorEnableCollision(false);
-		//poolableActor->parentShape->Destroy();
+		poolableActor->parentShape->Destroy();
 
 
 		//get the reference to the projectile here
