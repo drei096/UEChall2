@@ -117,11 +117,13 @@ void AUEChall2Projectile::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor
 			spawnCollectible(OtherComp->GetOwner()->GetActorLocation(), OtherActor);
 
 			UE_LOG(LogTemp, Warning, TEXT("IS HIT!!!!"));
+
+			
 			//Destroy();
 		}
 	}
 	
-	
+	this->FindComponentByClass<UStaticMeshComponent>()->SetNotifyRigidBodyCollision(false);
 
 }
 
