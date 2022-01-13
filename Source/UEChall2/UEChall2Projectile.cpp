@@ -30,7 +30,7 @@ void AUEChall2Projectile::BeginPlay()
 		this->SetActorScale3D(FVector(0.05f, 0.05f, 0.05f));
 		break;
 	case 2: 
-		this->SetActorScale3D(FVector(0.1f, 0.1f, 0.1f));
+		this->SetActorScale3D(FVector(0.15f, 0.15f, 0.15f));
 		break;
 	case 3:
 		this->SetActorScale3D(FVector(1.0f, 1.0f, 1.0f));
