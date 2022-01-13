@@ -89,11 +89,11 @@ AUEChall2Projectile::AUEChall2Projectile()
 void AUEChall2Projectile::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit)
 {
 	//CollisionComp->SetSimulatePhysics(true);
-	radForceComp = this->FindComponentByClass<URadialForceComponent>();
+	//radForceComp = this->FindComponentByClass<URadialForceComponent>();
 
 	if(OtherComp->GetCollisionObjectType() == ECollisionChannel::ECC_Destructible) 
 	{
-		radForceComp->FireImpulse();
+		//radForceComp->FireImpulse();
 
 		// Only add impulse and destroy projectile if we hit a physics
 		if (OtherComp->IsSimulatingPhysics())
