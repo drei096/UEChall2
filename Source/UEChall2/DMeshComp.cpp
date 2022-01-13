@@ -12,6 +12,9 @@ UDMeshComp::UDMeshComp()
 	PrimaryComponentTick.bCanEverTick = true;
 	//this->GetOwner()->FindComponentByClass<UDestructibleComponent>()
 	// ...
+
+	
+	MeshComponent = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("ghostMesh"));
 }
 
 

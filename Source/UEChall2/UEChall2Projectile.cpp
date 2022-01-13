@@ -99,7 +99,7 @@ void AUEChall2Projectile::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor
 		if (OtherComp->IsSimulatingPhysics())
 		{
 
-
+			
 			//radForceComp->FireImpulse();
 
 			//UE_LOG(LogTemp, Warning, TEXT("SPEED: %.2f, %.2f"), radForceComp);
@@ -114,6 +114,8 @@ void AUEChall2Projectile::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor
 			//OtherComp->AddRadialImpulse(GetActorLocation(), 2000, 500000.0, ERadialImpulseFalloff::RIF_Linear, false);
 			//OtherComp->AddRadialForce(GetActorLocation(), 2000, 100000.0, ERadialImpulseFalloff::RIF_Linear, false);
 
+			
+			
 			spawnCollectible(OtherComp->GetOwner()->GetActorLocation(), OtherActor);
 
 			UE_LOG(LogTemp, Warning, TEXT("IS HIT!!!!"));
