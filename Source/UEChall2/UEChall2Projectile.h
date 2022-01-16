@@ -9,6 +9,8 @@
 #include "CustomEnums.h"
 #include "../../../../../../../../Program Files/UE_4.27/Engine/Plugins/Runtime/ApexDestruction/Source/ApexDestruction/Public/ApexDestructionCustomPayload.h"
 #include "../../../../../../../../Program Files/UE_4.27/Engine/Plugins/Runtime/ApexDestruction/Source/ApexDestructionEditor/Private/SDestructibleMeshEditorViewport.h"
+#include "DestructibleComponent.h"
+#include "DrawDebugHelpers.h"
 #include "UEChall2Projectile.generated.h"
 
 class USphereComponent;
@@ -62,6 +64,10 @@ public:
 private:
 	ACollectibleSpawner* collectibleSpawner = nullptr;
 	TArray<ECollectibles> collectibleOrder;
+	UDestructibleComponent* DestructibleComponent = nullptr;
+
+	UFUNCTION()
+	void OnComponentFracture(const FVector& HitPoint, const FVector& HitDirection);
 	
 };
 

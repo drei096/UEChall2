@@ -94,6 +94,7 @@ void AUEChall2Projectile::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor
 	if(OtherComp->GetCollisionObjectType() == ECollisionChannel::ECC_Destructible) 
 	{
 		//radForceComp->FireImpulse();
+		DestructibleComponent = OtherActor->FindComponentByClass<UDestructibleComponent>();
 
 		// Only add impulse and destroy projectile if we hit a physics
 		if (OtherComp->IsSimulatingPhysics())
@@ -116,6 +117,9 @@ void AUEChall2Projectile::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor
 
 			UE_LOG(LogTemp, Warning, TEXT("SPEED: %.2f"), GetVelocity().Size());
 			
+			DestructibleComponent->OnComponentFracture.AddUniqueDynamic(this, &AUEChall2Projectile::OnComponentFracture);
+			
+
 			spawnCollectible(OtherComp->GetOwner()->GetActorLocation(), OtherActor);
 
 			UE_LOG(LogTemp, Warning, TEXT("IS HIT!!!!"));
@@ -132,4 +136,9 @@ void AUEChall2Projectile::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor
 void AUEChall2Projectile::spawnCollectible(FVector loc, AActor* parentShape)
 {
 	this->collectibleSpawner->collectiblePool->RequestPoolable(this->collectibleOrder[FMath::RandRange(0,this->collectibleOrder.Num()-1)],loc, parentShape);
+}
+
+void AUEChall2Projectile::OnComponentFracture(const FVector& HitPoint, const FVector& HitDirection)
+{
+	UE_LOG(LogTemp, Warning, TEXT("COMPONENT FRACTURE"));
 }
