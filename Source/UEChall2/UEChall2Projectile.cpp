@@ -115,12 +115,12 @@ void AUEChall2Projectile::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor
 			//OtherComp->AddRadialImpulse(GetActorLocation(), 2000, 500000.0, ERadialImpulseFalloff::RIF_Linear, false);
 			//OtherComp->AddRadialForce(GetActorLocation(), 2000, 100000.0, ERadialImpulseFalloff::RIF_Linear, false);
 
-			UE_LOG(LogTemp, Warning, TEXT("SPEED: %.2f"), GetVelocity().Size());
+			//UE_LOG(LogTemp, Warning, TEXT("SPEED: %.2f"), GetVelocity().Size());
 			
-			DestructibleComponent->OnComponentFracture.AddUniqueDynamic(this, &AUEChall2Projectile::OnComponentFracture);
+			//DestructibleComponent->OnComponentFracture.AddUniqueDynamic(this, &AUEChall2Projectile::OnComponentFracture);
 			
 
-			spawnCollectible(OtherComp->GetOwner()->GetActorLocation(), OtherActor);
+			//spawnCollectible(OtherComp->GetOwner()->GetActorLocation(), OtherActor);
 
 			UE_LOG(LogTemp, Warning, TEXT("IS HIT!!!!"));
 

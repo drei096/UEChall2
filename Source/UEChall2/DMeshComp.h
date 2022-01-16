@@ -4,6 +4,9 @@
 
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
+#include "UEChall2Character.h"
+#include "DestructibleComponent.h"
+#include "CollectibleSpawner.h"
 #include "DMeshComp.generated.h"
 
 
@@ -23,6 +26,17 @@ protected:
 public:	
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
-	USceneComponent* MeshComponent = nullptr;
-		
+	
+private:
+	AUEChall2Character* Character = nullptr;
+	ACollectibleSpawner* collectibleSpawner = nullptr;
+	TArray<ECollectibles> collectibleOrder;
+	UDestructibleComponent* DestructibleComponent = nullptr;
+	
+public:
+	UFUNCTION()
+	void OnComponentFracture(const FVector& HitPoint, const FVector& HitDirection);
+	UFUNCTION(BlueprintCallable)
+	void spawnCollectible(FVector loc, AActor* parentShape);
+
 };
