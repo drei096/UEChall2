@@ -28,15 +28,19 @@ void AUEChall2Projectile::BeginPlay()
 	{
 	case 1:
 		this->SetActorScale3D(FVector(0.05f, 0.05f, 0.05f));
+		this->FindComponentByClass<UStaticMeshComponent>()->SetMassOverrideInKg(NAME_None, 500 * 2);
 		break;
 	case 2: 
 		this->SetActorScale3D(FVector(0.15f, 0.15f, 0.15f));
+		this->FindComponentByClass<UStaticMeshComponent>()->SetMassOverrideInKg(NAME_None, 500 * 1);
 		break;
 	case 3:
 		this->SetActorScale3D(FVector(1.0f, 1.0f, 1.0f));
+		this->FindComponentByClass<UStaticMeshComponent>()->SetMassOverrideInKg(NAME_None, 500 * 2);
 		break;
 	case 4:
 		this->SetActorScale3D(FVector(1.5f, 1.5f, 1.5f));
+		this->FindComponentByClass<UStaticMeshComponent>()->SetMassOverrideInKg(NAME_None, 500 * 3);
 		break;
 	default:
 		break;
