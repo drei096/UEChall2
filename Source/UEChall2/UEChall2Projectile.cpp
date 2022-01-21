@@ -7,13 +7,16 @@
 #include "GameFramework/ProjectileMovementComponent.h"
 #include "Components/SphereComponent.h"
 
+//executed after the projectile is spawned when gun is fired
 void AUEChall2Projectile::BeginPlay()
 {
 	Super::BeginPlay();
 
+	//gets the player controller in the level
 	APlayerController* PC = GetWorld()->GetFirstPlayerController();
     if (PC != nullptr)
     {
+		//assign the "AUEChall2Character" reference of our pawn
         Character =  Cast<AUEChall2Character >(PC->GetPawn());
         if (Character != nullptr)
         {
@@ -21,9 +24,12 @@ void AUEChall2Projectile::BeginPlay()
         }
     }
 
+	//a collectible list that will be use for getting a random spawn
 	this->collectibleOrder = {ECollectibles::CAPSULE, ECollectibles::CONE, ECollectibles::CUBE, ECollectibles::CYLINDER};
+	//assign an OnHit function for the static mesh when it detects a collision; USED DURING DEVELOPMENT
 	this->FindComponentByClass<UStaticMeshComponent>()->OnComponentHit.AddDynamic(this, &AUEChall2Projectile::OnHit);
 
+	//responsible for getting the static mesh component of the projectile and scaling it to the appropriate size acc to the obtained collectible
 	switch (Character->projectileSizeID)
 	{
 	case 1:
@@ -90,6 +96,7 @@ AUEChall2Projectile::AUEChall2Projectile()
 	//InitialLifeSpan = 3.0f;
 }
 
+//used to add functionality when the static mesh detects a collision; USED DURING DEVELOPMENT
 void AUEChall2Projectile::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit)
 {
 	//CollisionComp->SetSimulatePhysics(true);

@@ -344,18 +344,22 @@ void AUEChall2Character::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor,
 		//get the reference to the projectile here
 		if(OtherActor->ActorHasTag(cylinderTag))
 		{
+			//assign the new projectile size; see UEChall2Projectile.cpp for the sizes
 			projectileSizeID = 3;
 		}
 		else if(OtherActor->ActorHasTag(capsuleTag))
 		{
+			//assign the new projectile size; see UEChall2Projectile.cpp for the sizes
 			projectileSizeID = 4;
 		}
 		else if (OtherActor->ActorHasTag(coneTag))
 		{
+			//assign the new projectile size; see UEChall2Projectile.cpp for the sizes
 			projectileSizeID = 1;
 		}
 		else if (OtherActor->ActorHasTag(cubeTag))
 		{
+			//assign the new projectile size; see UEChall2Projectile.cpp for the sizes
 			projectileSizeID = 2;
 		}
 	}
