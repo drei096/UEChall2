@@ -59,6 +59,7 @@ void UObjectPool::Initialize()
 		return;
 	}
 
+	//create a copies for each collectible type
 	for(int x = 0; x < this->actorCopies.Num(); x++)
 	{
 		FActorSpawnParameters spawnParams;
@@ -67,6 +68,8 @@ void UObjectPool::Initialize()
 		ECollectibles collection = this->spawnOrder[x];
 
 		const FTransform transform = this->actorCopies[x]->GetTransform();
+
+		//create a copies of the collectible type
 		for (int i = 0; i < this->maxPoolSize - 1; i++)
 		{
 			AActorPoolable* poolableObject = this->GetWorld()->SpawnActor<AActorPoolable>(this->actorCopies[x]->GetClass(), spawnParams);
@@ -76,6 +79,7 @@ void UObjectPool::Initialize()
 			this->availableObjects.Push(poolableObject);
 		}
 
+		//after using the original / model, destroys it to remove it from the world
 		this->actorCopies[x]->Destroy();
 	}
 }
@@ -90,6 +94,7 @@ int UObjectPool::GetMaxPoolSize()
 	return this->maxPoolSize;
 }
 
+//spawns the object and place it on the passed location
 AActorPoolable* UObjectPool::RequestPoolable(FVector loc)
 {
 	if(this->HasObjectAvailable(1))
@@ -110,6 +115,7 @@ AActorPoolable* UObjectPool::RequestPoolable(FVector loc)
 	}
 }
 
+//spawns the object and place it on the passed location; chooses a specific collectible type and assigns its parent's actor reference
 AActorPoolable* UObjectPool::RequestPoolable(ECollectibles collectType, FVector loc, AActor* parentShape)
 {
 	if(this->HasObjectAvailable(1))
@@ -153,6 +159,7 @@ TArray<AActorPoolable*> UObjectPool::RequestPoolabeBatch(int size)
 	return objects;
 }
 
+//releases the actorPoolable object by passing in the poolableObject reference
 void UObjectPool::ReleasePoolable(AActorPoolable* poolableObject)
 {
 	poolableObject->OnRelease();

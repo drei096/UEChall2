@@ -20,9 +20,13 @@ public:
 	virtual void OnRelease(); //throw this event when this object has been released back to the pool.
 	virtual void OnActive(); //throws this event when this object has been activated from the pool.
 
+	//used for accessing the actors through indexing; gives them index identification
 	void SetIndex(int i);
 	int GetIndex();
+
+	//set a collectible type for the actorPoolable
 	ECollectibles collectibleType = ECollectibles::NONE;
+	//set the parentShape of where they got spawn
 	AActor* parentShape = nullptr;
 
 private:

@@ -17,6 +17,7 @@ ACollectibleSpawner::ACollectibleSpawner()
 void ACollectibleSpawner::BeginPlay()
 {
 	Super::BeginPlay();
+	//access the "UObjectPool" reference and creates a pool of objects
 	this->collectiblePool = this->FindComponentByClass<UObjectPool>();
 	this->collectiblePool->Initialize();
 }

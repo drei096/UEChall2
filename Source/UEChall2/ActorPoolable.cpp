@@ -15,6 +15,7 @@ void AActorPoolable::OnInitialize()
 {
 }
 
+//hides the actor and disables the program of the actorPoolable's actor
 void AActorPoolable::OnRelease()
 {
 	this->SetActorHiddenInGame(true);
@@ -22,6 +23,7 @@ void AActorPoolable::OnRelease()
 	this->FindComponentByClass<UPrimitiveComponent>()->SetSimulatePhysics(false);
 }
 
+//displays the actor and enable the program of the actorPoolable's actor
 void AActorPoolable::OnActive()
 {
 	this->SetActorHiddenInGame(false);

@@ -7,8 +7,6 @@
 #include "PhysicsEngine/RadialForceComponent.h"
 #include "UEChall2Character.h"
 #include "CustomEnums.h"
-#include "../../../../../../../../Program Files/UE_4.27/Engine/Plugins/Runtime/ApexDestruction/Source/ApexDestruction/Public/ApexDestructionCustomPayload.h"
-#include "../../../../../../../../Program Files/UE_4.27/Engine/Plugins/Runtime/ApexDestruction/Source/ApexDestructionEditor/Private/SDestructibleMeshEditorViewport.h"
 #include "DestructibleComponent.h"
 #include "DrawDebugHelpers.h"
 #include "UEChall2Projectile.generated.h"
